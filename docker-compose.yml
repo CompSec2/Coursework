@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  bind:
+    container_name: coursework_dns
+    restart: always
+    image: sameersbn/bind:9.11.3-20190706
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "10000:10000/tcp"
+    volumes:
+      - /data
+    networks:
+      - net
+  attacker:
+    container_name: coursework_attacker
+    build: 
+      context: ./attacker
+    networks:
+      - net
+  victim:
+    container_name: coursework_victim
+    build: 
+      context: ./victim
+    ports:  
+      - "5000:5000"
+    networks:
+      net:
+        ipv4_address: 172.16.238.10
+
+networks:
+  net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
