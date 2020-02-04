@@ -13,6 +13,8 @@ services:
       - /data
     networks:
       - net
+    environment:
+      - ROOT_PASSWORD=highentropy
   attacker:
     container_name: coursework_attacker
     build: 
