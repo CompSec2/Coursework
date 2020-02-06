@@ -10,7 +10,8 @@ With the containers running, to run a command inside the attacker container:
 To run an interactive shell:
 `docker exec -it coursework_attacker /bin/sh`
 
-To see Flask app: navigate to http:localhost:5000
+To see Flask app: navigate to http://localhost:5000
+
 To see DNS admin panel: navigate to https://localhost:10000/ and log in with `root`/`highentropy`
 
 ## TODO:
