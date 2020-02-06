@@ -19,6 +19,8 @@ services:
       context: ./attacker
     networks:
       - net
+    volumes:
+      - ./attacker/attack.py:/attack.py:ro
   victim:
     container_name: coursework_victim
     build: 
