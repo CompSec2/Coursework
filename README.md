@@ -21,6 +21,11 @@ Then to run the attack script from inside the attacker just run:
 python attack.py
 ```
 
+Or avoiding the shell altogether:
+```bash 
+docker exec coursework_attacker python attack.py
+```
+
 To see Flask app: navigate to http://localhost:5000
 
 To see DNS admin panel: navigate to https://localhost:10000/ and log in with `root`/`highentropy`
