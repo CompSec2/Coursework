@@ -10,7 +10,8 @@ services:
     volumes:
       - /data
     networks:
-      - net
+      net:
+        ipv4_address: 172.16.238.8
     environment:
       - ROOT_PASSWORD=highentropy
   attacker:
@@ -18,7 +19,8 @@ services:
     build: 
       context: ./attacker
     networks:
-      - net
+      net:
+        ipv4_address: 172.16.238.9
     volumes:
       - ./attacker/attack.py:/attack.py:ro
   victim:
