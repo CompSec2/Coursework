@@ -2,13 +2,24 @@
 
 ## Running
 With docker installed:
-`docker-compose up --build`
+```bash
+docker-compose up --build
+```
 
 With the containers running, to run a command inside the attacker container:
-`docker exec coursework_attacker command`
+```bash
+docker exec coursework_attacker $command
+```
 
 To run an interactive shell:
-`docker exec -it coursework_attacker /bin/sh`
+```bash 
+docker exec -it coursework_attacker /bin/sh
+```
+
+Then to run the attack script from inside the attacker just run:
+```bash
+python attack.py
+```
 
 To see Flask app: navigate to http://localhost:5000
 
