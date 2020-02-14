@@ -30,18 +30,6 @@ To see Flask app: navigate to http://localhost:5000
 
 To see DNS admin panel: navigate to https://localhost:10000/ and log in with `root`/`highentropy`
 
-To run scapy from victim or attacker, install git:
-```bash 
-apk add git
-
-```
-Then clone scapy and run it:
-```bash
-git clone https://github.com/secdev/scapy.git
-cd scapy
-./run_scapy
-```
-
 ## TODO:
 - [x] create basic Flask app
 - [x] create attacker dockerfile
