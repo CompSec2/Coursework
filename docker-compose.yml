@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nsd:
-  image: hardware/nsd-dnssec
+    image: hardware/nsd-dnssec
     container_name: nsd
     ports:
       - "172.16.238.8:53:53"
