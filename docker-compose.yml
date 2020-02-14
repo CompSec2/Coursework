@@ -5,12 +5,14 @@ services:
     image: hardware/nsd-dnssec
     container_name: nsd
     ports:
-      - "172.16.238.8:10000:10000"
-      - "172.16.238.8:10000:10000/udp"
+      - "10000:10000/tcp"
     volumes:
       - /mnt/docker/nsd/conf:/etc/nsd
       - /mnt/docker/nsd/zones:/zones
       - /mnt/docker/nsd/db:/var/db/nsd
+      networks:
+        net:
+          ipv4_address: 172.16.238.8
   attacker:
     container_name: coursework_attacker
     build: 
