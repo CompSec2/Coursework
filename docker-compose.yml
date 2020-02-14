@@ -5,8 +5,8 @@ services:
     image: hardware/nsd-dnssec
     container_name: nsd
     ports:
-      - "172.16.238.8:53:53"
-      - "172.16.238.8:53:53/udp"
+      - "172.16.238.8:10000:10000"
+      - "172.16.238.8:10000:10000/udp"
     volumes:
       - /mnt/docker/nsd/conf:/etc/nsd
       - /mnt/docker/nsd/zones:/zones
