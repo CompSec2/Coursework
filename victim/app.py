@@ -13,7 +13,7 @@ def loginVictim():
              return redirect(url_for('hello'))
         else: 
             varError = 'The credentials are wrong! Try again.'
-    return render.template('login.html', error = varError)
+    return render.template('/templates/login.html', error = varError)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
