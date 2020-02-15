@@ -5,7 +5,7 @@ app = Flask(__name__)
 def hello():
     return 'I hope nothing bad happens to me'
 
-@app.rout('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET','POST'])
 def loginVictim():
     varError = '' 
     if request.method == 'POST':
