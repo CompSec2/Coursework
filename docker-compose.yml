@@ -13,7 +13,7 @@ services:
       net:
         ipv4_address: 172.16.238.8
     environment:
-      - ROOT_PASSWORD=highentropy"
+      - ROOT_PASSWORD=highentropy
   attacker:
     container_name: coursework_attacker
     build: 
