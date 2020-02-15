@@ -1,18 +1,19 @@
 version: '2'
 
 services:
-  nsd:
-    image: hardware/nsd-dnssec
-    container_name: nsd
+  bind:
+    container_name: coursework_dns
+    restart: always
+    image: sameersbn/bind:9.11.3-20190706
     ports:
       - "10000:10000/tcp"
     volumes:
-      - /mnt/docker/nsd/conf:/etc/nsd
-      - /mnt/docker/nsd/zones:/zones
-      - /mnt/docker/nsd/db:/var/db/nsd
+      - /data
     networks:
       net:
         ipv4_address: 172.16.238.8
+    environment:
+      - ROOT_PASSWORD=highentropy"
   attacker:
     container_name: coursework_attacker
     build: 
