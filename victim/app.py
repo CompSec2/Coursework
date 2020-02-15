@@ -7,12 +7,10 @@ def hello():
 
 @app.route('/login', methods=['GET','POST'])
 def loginVictim():
-    varError = '' 
+    varError = 'The credentials are wrong! Try again.' 
     if request.method == 'POST':
         if request.form['password'] == 'toor' and request.form['username'] == 'toor':
-       #      return redirect(url_for('hello'))
-        else: 
-            varError = 'The credentials are wrong! Try again.'
+            return redirect(url_for('hello'))
     return render_template('loginForm.html', error = varError)
 
 if __name__ == '__main__':
