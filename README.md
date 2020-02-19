@@ -23,7 +23,12 @@ python attack.py
 
 Or avoiding the shell altogether:
 ```bash 
-docker exec coursework_attacker python attack.py
+docker exec -it coursework_attacker python attack.py
+```
+
+To sniff DNS packets incoming to the victim:
+```bash 
+docker exec -it coursework_victim python sniff.py
 ```
 
 To see Flask app: navigate to http://localhost:5000
