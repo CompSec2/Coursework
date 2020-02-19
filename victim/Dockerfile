@@ -4,7 +4,7 @@ ADD requirements.txt .
 RUN pip install -r /requirements.txt
 
 ADD app.py .
-ADD templates
+ADD templates templates
 EXPOSE 5000
 
 CMD ["/usr/local/bin/python", "app.py"]
