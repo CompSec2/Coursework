@@ -1,17 +1,18 @@
-from flask import request, render_template, url_for, Flask, redirect
+from flask import Flask, request, render_template, url_for, session, redirect
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/loggedIn')
 def hello():
-    return 'I hope nothing bad happens to me'
+    return 'I hope nothing bad happens to me!'
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def loginVictim():
-    varError = 'The credentials are wrong! Try again.' 
+    varError = ''
     if request.method == 'POST':
-        if request.form['password'] == 'toor' and request.form['username'] == 'toor':
-            return redirect(url_for('hello'))
-    return render_template('loginForm.html', error = varError)
+        if request.form['password'] == 'toor' and request.form['username'] == 'root':
+             return redirect(url_for('hello')) 
+        varError = 'The credentials are wrong! Try again.'         
+    return render_template('loginForm.html',  error = varError)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
