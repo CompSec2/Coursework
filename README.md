@@ -1,5 +1,13 @@
 # Coursework
 
+## Wirehhark
+This branch uses Wireshark which runs on port 14500. To run:
+```bash
+docker run -p 14500:14500 --restart unless-stopped --name wireshark --cap-add NET_ADMIN ffeldhaus/wireshark
+```
+To access Wireshark:
+https://localhost:14500/?username=wireshark&password=wireshark
+
 ## Running
 With docker installed:
 ```bash
