@@ -9,7 +9,14 @@ To access Wireshark:
 ```bash
 tail -c +1 -f tcpdump/tcpdump.pcap | wireshark -k -i -
 ```
-
+If you get access denied:
+```bash
+sudo dpkg-reconfigure wireshark-common
+```
+Select yes, then:
+```bash
+sudo dpkg-reconfigure wireshark-common
+```
 ## Running
 With docker installed:
 ```bash
