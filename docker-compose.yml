@@ -32,6 +32,8 @@ services:
     networks:
       net:
         ipv4_address: 172.16.238.10
+    volumes:
+      - ./victim/sniff.py:/sniff.py:ro
 
 networks:
   net:
