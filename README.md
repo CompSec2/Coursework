@@ -46,7 +46,7 @@ sudo dpkg-reconfigure wireshark-common
 ```
 Select yes, then:
 ```bash
-sudo dpkg-reconfigure wireshark-common
+sudo chmod +x /usr/bin/dumpcap
 ```
 
 ## TODO:
