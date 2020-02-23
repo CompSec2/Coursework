@@ -1,6 +1,11 @@
 version: '2'
 
 services:
+  tcpdump:
+    image: kaazing/tcpdump
+    network_mode: "host"
+    volumes:
+      - ./tcpdump:/tcpdump
   bind:
     container_name: coursework_dns
     restart: always
