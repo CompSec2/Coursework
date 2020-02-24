@@ -9,9 +9,9 @@ options {
     allow-query { any; };
     allow-transfer { none; };
     recursion no;
-    max-udp-size 65000;
-    edns-udp-size  65000;
-    nocookie-udp-size 65000;
+    max-udp-size 4096;
+    edns-udp-size  4096;
+    nocookie-udp-size 4096;
     send-cookie no;
     require-server-cookie no;
 };

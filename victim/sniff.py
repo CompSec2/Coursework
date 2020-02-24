@@ -7,8 +7,6 @@ def handler(packet):
     print("length:", len(packet))
     print("source:", packet[IP].src)
     print("destination:", packet[IP].dst)
-    print("packet:")
-    packet[DNS].show()
 
 
-sniff(filter="udp port 53", prn=handler)
+sniff(filter="dst host 172.16.238.10 and src host 172.16.238.8 and udp ", prn=handler)

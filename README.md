@@ -70,7 +70,7 @@ in `named.conf.local`.
 
 To copy the signed config back out run:
 ```bash
-docker cp coursework_dns:/data/bind/etc/db.example.com.signed ./dns
+docker cp coursework_dns:/data/bind/etc/db.example.com.signed ./dns/db.example.com.signed
 ```
 
 ## TODO:
