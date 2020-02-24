@@ -1,7 +1,5 @@
 FROM python:3.8.1-alpine3.11
 
-RUN apk add bind-tools
-
 ADD requirements.txt .
 RUN pip install -r /requirements.txt
 
