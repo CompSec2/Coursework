@@ -65,6 +65,9 @@ There are multiple configs:
 
 After changing the base config, to regenerate the signed config run `./gen-signed.sh` in `/data/bind/etc` on the DNS container.
 
+If the `gen-signed.sh` script takes more than a few seconds, you might not have enough entropy and the process will take
+a very long time. Stop the script and install haveged (`apt-get install haveged`) on the host machine, and try again.
+
 To change which config is used modify this line `file "/etc/bind/db.example.com.signed";`
 in `named.conf.local`.
 
