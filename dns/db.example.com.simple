@@ -7,18 +7,10 @@ $TTL 3H
                 3H )    ; minimum
 @            IN   NS     example.com.
 @            IN   A      192.0.2.1
-@            IN   A      192.0.2.2
-@            IN   A      192.0.2.3
-@            IN   A      192.0.2.4
-@            IN   A      192.0.2.5
-@            IN   A      192.0.2.6
-@            IN   A      192.0.2.7
-@            IN   A      192.0.2.8
 @            IN   A      192.0.2.9
 @            IN   AAAA   2a00:1450:4010:c0b::8a
 @            IN   MX     10 example.com.
 @            IN   MX     20 example.com.
-www          IN   CNAME  example.com.
 ww1          IN   CNAME  example.com.
 ww2          IN   CNAME  example.com.
 ww3          IN   CNAME  example.com.
