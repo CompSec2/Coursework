@@ -54,12 +54,31 @@ Select yes, then:
 sudo chmod +x /usr/bin/dumpcap
 ```
 
+## DNS config
+The DNS server is set up to be the authoritative NS for example.com.
+
+There are multiple configs:
+- base config: `dns/db.example.com`, which the signed config is generated from
+- signed config: `dns/db.example.com.signed`
+- simple config: `dns/db.example.com.simple`, which does not mention the keys, and should
+ be kept in line with the base config.
+
+To generate the signed config run `/data/bind/etc/gen-signed.sh` on the DNS container.
+
+To change which config is used modify this line `file "/etc/bind/db.example.com.signed";`
+in `named.conf.local`.
+
+To copy the signed config back out run:
+```bash
+docker cp coursework_dns:/data/bind/etc/db.example.com.signed ./dns
+```
+
 ## TODO:
 - [x] create basic Flask app
 - [x] create attacker dockerfile
-- [ ] figure out how to spoof IP and start attack
+- [x] figure out how to spoof IP and start attack
 - [ ] make sure DNS configuration is OK, and allows for attack
-- [ ] create attack script
+- [x] create attack script
 - [ ] run Flask with WSGI to mimic a production like environment
-- [ ] add Wireshark container which dumps traces onto volume connected to the host OS
+- [x] add Wireshark container which dumps traces onto volume connected to the host OS
 - [ ] put all this in a VM
