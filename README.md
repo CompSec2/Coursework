@@ -63,7 +63,7 @@ There are multiple configs:
 - simple config: `dns/db.example.com.simple`, which does not mention the keys, and should
  be kept in line with the base config.
 
-To generate the signed config run `/data/bind/etc/gen-signed.sh` on the DNS container.
+To generate the signed config run `./gen-signed.sh` in `/data/bind/etc` on the DNS container.
 
 To change which config is used modify this line `file "/etc/bind/db.example.com.signed";`
 in `named.conf.local`.
