@@ -77,7 +77,7 @@ docker cp coursework_dns:/data/bind/etc/db.example.com.signed ./dns/db.example.c
 - [x] create basic Flask app
 - [x] create attacker dockerfile
 - [x] figure out how to spoof IP and start attack
-- [ ] make sure DNS configuration is OK, and allows for attack
+- [x] make sure DNS configuration is OK, and allows for attack
 - [x] create attack script
 - [ ] run Flask with WSGI to mimic a production like environment
 - [x] add Wireshark container which dumps traces onto volume connected to the host OS
