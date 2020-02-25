@@ -54,12 +54,38 @@ Select yes, then:
 sudo chmod +x /usr/bin/dumpcap
 ```
 
+## DNS config
+The DNS server is set up to be the authoritative NS for example.com.
+
+There are multiple configs:
+- base config: `dns/db.example.com`, which the signed config is generated from
+- signed config: `dns/db.example.com.signed`
+- simple config: `dns/db.example.com.simple`, which does not mention the keys, and should
+ be kept in line with the base config.
+
+After changing the base config, to regenerate the signed config run `./gen-signed.sh` in `/data/bind/etc` on the DNS container.
+
+If the `gen-signed.sh` script takes more than a few seconds, you might not have enough entropy and the process will take
+a very long time. Stop the script and install haveged (`apt-get install haveged`) on the host machine, and try again.
+
+To change which config is used modify this line `file "/etc/bind/db.example.com.signed";`
+in `named.conf.local`.
+
+To copy the signed config back out run:
+```bash
+docker cp coursework_dns:/data/bind/etc/db.example.com.signed ./dns/db.example.com.signed
+```
+
 ## TODO:
 - [x] create basic Flask app
 - [x] create attacker dockerfile
-- [ ] figure out how to spoof IP and start attack
-- [ ] make sure DNS configuration is OK, and allows for attack
-- [ ] create attack script
+- [x] figure out how to spoof IP and start attack
+- [x] make sure DNS configuration is OK, and allows for attack
+- [x] create attack script
+- [ ] reassemble the packet in sniff.py to be able to view it in whole
+- [ ] record difference in packet size with DNSSEC on and off to compute amplification factor
+- [ ] make the message sending part of attack.py multiprocess and compare volume to regular
+- [ ] find the volume of traffic required to bring down victim
 - [ ] run Flask with WSGI to mimic a production like environment
-- [ ] add Wireshark container which dumps traces onto volume connected to the host OS
+- [x] add Wireshark container which dumps traces onto volume connected to the host OS
 - [ ] put all this in a VM

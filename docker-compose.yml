@@ -9,7 +9,7 @@ services:
   bind:
     container_name: coursework_dns
     restart: always
-    image: sameersbn/bind:9.11.3-20190706
+    build: ./dns
     ports:
       - "10000:10000/tcp"
     volumes:

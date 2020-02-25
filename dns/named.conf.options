@@ -1,0 +1,17 @@
+options {
+    directory "/var/cache/bind";
+
+    dnssec-enable yes;
+    dnssec-validation yes;
+
+    auth-nxdomain no;
+    listen-on-v6 { any; };
+    allow-query { any; };
+    allow-transfer { none; };
+    recursion no;
+    max-udp-size 4096;
+    edns-udp-size  4096;
+    nocookie-udp-size 4096;
+    send-cookie no;
+    require-server-cookie no;
+};
