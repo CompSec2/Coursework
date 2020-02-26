@@ -82,6 +82,7 @@ docker cp coursework_dns:/data/bind/etc/db.example.com.signed ./dns/db.example.c
 - [x] figure out how to spoof IP and start attack
 - [x] make sure DNS configuration is OK, and allows for attack
 - [x] create attack script
+- [ ] limit resources the victim can use in docker-compose.yml 
 - [ ] reassemble the packet in sniff.py to be able to view it in whole
 - [ ] record difference in packet size with DNSSEC on and off to compute amplification factor
 - [ ] make the message sending part of attack.py multiprocess and compare volume to regular
