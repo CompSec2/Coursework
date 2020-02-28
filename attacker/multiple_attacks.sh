@@ -14,24 +14,27 @@ attack() {
 
 attackers=$((${#} - 1))
 docker-compose up -d --scale attacker=${attackers};
-container=0
 
 handler() {
+    container=0
     for PID in "${processes[@]}"
         do
-            echo "stopping process ${PID}"
-            kill ${PID}
-            while kill -0 ${PID} 2> /dev/null
+            container=$(( $container + 1 ))
+            echo
+            echo "stopping attack script inside container"
+            docker exec -t coursework_attacker_${container} sh -c "ps | grep python | head -n 1| tr -s ' '|cut -d' ' -f2| xargs kill -s SIGINT"
+            while kill -0 ${!} 2> /dev/null
                 do
-                    wait ${PID}
+                    wait ${!}
                 done;
         done;
     docker-compose down
-    exit
+    exit 1
 }
 
 trap handler SIGINT;
 
+container=0
 for i in ${ips}
 do
     container=$(( $container + 1 ))
