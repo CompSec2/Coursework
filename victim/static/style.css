@@ -1,0 +1,7 @@
+body
+{
+	background:  url('images/background.jpg') no-repeat fixed center;
+
+}
+#loginForm{text-align:center}
+p, input{display:inline-block}
