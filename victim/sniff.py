@@ -1,4 +1,3 @@
-from scapy.layers.dns import DNS
 from scapy.layers.inet import IP
 from scapy.sendrecv import sniff
 
