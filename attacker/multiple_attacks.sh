@@ -23,12 +23,7 @@ handler() {
             echo
             echo "stopping attack script inside container"
             docker exec -t coursework_attacker_${container} sh -c "ps | grep python | head -n 1| tr -s ' '|cut -d' ' -f2| xargs kill -s SIGINT"
-            while kill -0 ${!} 2> /dev/null
-                do
-                    wait ${!}
-                done;
         done;
-    docker-compose down
     exit 1
 }
 
