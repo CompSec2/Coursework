@@ -14,8 +14,8 @@ def loginVictim():
     varError = ''
     if request.method == 'POST':
         if request.form['password'] == 'toor' and request.form['username'] == 'root':
-	     app.logger.info('Processing default request')
-             return redirect(url_for('hello')) 
+            app.logger.info('Processing default request')
+            return redirect(url_for('hello')) 
         varError = 'The credentials are wrong! Try again.' 
     app.logger.info('Processing default request')        
     return render_template('loginForm.html',  error = varError)
