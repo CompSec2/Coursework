@@ -6,6 +6,7 @@ logging.basicConfig(filename='demo.log', level=logging.DEBUG)
 
 @app.route('/loggedIn')
 def hello():
+    app.logger.info('Processing default request')        
     return 'I hope nothing bad happens to me!'
 
 @app.route('/', methods=['GET','POST'])
