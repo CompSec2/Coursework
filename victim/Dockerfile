@@ -8,6 +8,7 @@ RUN pip install -r /requirements.txt
 
 ADD app.py .
 ADD templates templates
+ADD static static
 ADD sniff.py .
 
 EXPOSE 5000
