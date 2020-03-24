@@ -13,17 +13,9 @@ ADD static static
 ADD sniff.py .
 ADD victim.wsgi
 
-RUN apt-get install apache2
-RUN apt-get install libapache2-mod-wsgi-py3
-RUN a2enmod wsgi
-RUN apt-get install python-pip
-RUN pip install virtualenv
-RUN virtualenv /victim/venv
-source victim/venv/bin/activate
-RUN pip install Flask
+RUN apt-get update && apt-get install apache2 libapache2-mod-wsgi-py3 && sudo a2enmod wsgi
 
-RUN mkdir -p victim.com/logs
-RUN chown -R www-data:www-data victim.com
+RUN mkdir -p victim.com/logs && sudo sudo chown -R www-data:www-data victim.com
 
 EXPOSE 5000
 
