@@ -15,7 +15,8 @@ ADD victim.wsgi
 
 RUN apt-get update && apt-get install apache2 libapache2-mod-wsgi-py3 && sudo a2enmod wsgi
 
-RUN mkdir -p victim.com/logs && sudo sudo chown -R www-data:www-data victim.com
+RUN mkdir -p victim.com/logs && sudo chown -R www-data:www-data victim.com
+RUN /etc/init.d/apache2 reload
 
 EXPOSE 5000
 
