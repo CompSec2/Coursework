@@ -4,7 +4,15 @@ RUN apk update
 RUN apk add tcpdump
 
 ADD requirements.txt .
+
+RUN apk add gcc
+RUN apk add libc-dev
+RUN apk add linux-headers
+
 RUN pip install -r /requirements.txt
+
+RUN pip install uwsgi==2.0.14
+RUN apk add uwsgi-python3
 
 WORKDIR /var/www
 ADD app.py .
@@ -14,10 +22,11 @@ ADD sniff.py .
 ADD victim.wsgi .
 ADD victim.com.conf /etc/apache2/sites-available/
 
-RUN apt-get update && apt-get install apache2 libapache2-mod-wsgi-py3 && sudo a2enmod wsgi
+RUN apk update && apk add apache2-dev
+RUN pip install mod_wsgi
+RUN a2enmod wsgi
 
-RUN mkdir -p /var/www/victim.com/logs && sudo chown -R www-data:www-data /var/www/victim.com
-RUN /etc/init.d/apache2 reload
+RUN mkdir -p /var/www/victim.com/logs && chown -R 771 /var/www/victim.com
 
 EXPOSE 5000
 
