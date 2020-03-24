@@ -1,7 +1,19 @@
 Click==7.0
 Flask==1.1.1
+uWSGI==2.0.17.1
 itsdangerous==1.1.0
 Jinja2==2.11.1
 MarkupSafe==1.1.1
 Werkzeug==0.16.1
 scapy==2.4.3
+sudo apt-get install apache2
+sudo apt-get install libapache2-mod-wsgi-py3
+sudo a2enmod wsgi
+sudo apt-get install python-pip
+sudo pip install virtualenv
+sudo virtualenv /victim/venv
+source victim/venv/bin/activate
+sudo pip install Flask
+
+sudo mkdir -p victim.com/logs
+sudo chown -R www-data:www-data victim.com

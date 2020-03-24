@@ -6,6 +6,7 @@ RUN apk add tcpdump
 ADD requirements.txt .
 RUN pip install -r /requirements.txt
 
+WORKDIR /var/www
 ADD app.py .
 ADD templates templates
 ADD static static

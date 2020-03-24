@@ -39,6 +39,9 @@ services:
         ipv4_address: 172.16.238.10
     volumes:
       - ./victim/sniff.py:/sniff.py:ro
+    working_dir: /var/www/
+    extra_hosts:
+      - "www.victim.com:127.0.0.1"
 
 networks:
   net:
