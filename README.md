@@ -23,7 +23,16 @@ python attack.py
 
 Or avoiding the shell altogether:
 ```bash 
-docker exec -it coursework_attacker python attack.py
+docker exec -ti coursework_attacker sh -c "python attack.py"
+```
+
+To run multiple attackers potentially using multiple DNS servers:
+```bash
+./attacker/multiple_attacks.sh <number_processes_per_attacker> <last byte of ip address of DNS for first attacker > <last byte of ip address of DNS for second attacker>...
+```
+For example, to run an attack with 4 attackers, each with 2 processes against DNSes running on 172.16.238.8 and 172.16.238.9, each being hit by two attackers: 
+```bash
+./attacker/multiple_attacks.sh 2 8 8 9 9
 ```
 
 To sniff DNS packets incoming to the victim:
@@ -75,18 +84,3 @@ To copy the signed config back out run:
 ```bash
 docker cp coursework_dns:/data/bind/etc/db.example.com.signed ./dns/db.example.com.signed
 ```
-
-## TODO:
-- [x] create basic Flask app
-- [x] create attacker dockerfile
-- [x] figure out how to spoof IP and start attack
-- [x] make sure DNS configuration is OK, and allows for attack
-- [x] create attack script
-- [ ] limit resources the victim can use in docker-compose.yml 
-- [ ] reassemble the packet in sniff.py to be able to view it in whole
-- [ ] record difference in packet size with DNSSEC on and off to compute amplification factor
-- [ ] make the message sending part of attack.py multiprocess and compare volume to regular
-- [ ] find the volume of traffic required to bring down victim
-- [ ] run Flask with WSGI to mimic a production like environment
-- [x] add Wireshark container which dumps traces onto volume connected to the host OS
-- [ ] put all this in a VM
