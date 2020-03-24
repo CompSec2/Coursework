@@ -11,11 +11,12 @@ ADD app.py .
 ADD templates templates
 ADD static static
 ADD sniff.py .
-ADD victim.wsgi
+ADD victim.wsgi .
+ADD victim.com.conf /etc/apache2/sites-available/
 
 RUN apt-get update && apt-get install apache2 libapache2-mod-wsgi-py3 && sudo a2enmod wsgi
 
-RUN mkdir -p victim.com/logs && sudo chown -R www-data:www-data victim.com
+RUN mkdir -p /var/www/victim.com/logs && sudo chown -R www-data:www-data /var/www/victim.com
 RUN /etc/init.d/apache2 reload
 
 EXPOSE 5000
