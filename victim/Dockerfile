@@ -16,9 +16,9 @@ ADD victim.wsgi .
 ADD victim.com.conf /etc/apache2/sites-available/
 
 RUN pip install mod_wsgi
-RUN a2enmod wsgi
+RUN a2enmod wsgi && a2ensite /etc/apache2/sites-available/victim.com.conf
 
-RUN mkdir -p /var/www/victim.com/logs && chown -R 771 /var/www/victim.com
+RUN mkdir -p /var/www/victim.com/logs && chown -R 771 /var/www/victim.com && /etc/init.d/apache2 reload
 
 EXPOSE 5000
 
