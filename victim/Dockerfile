@@ -1,18 +1,11 @@
 FROM python:3.8.1-alpine3.11
 
 RUN apk update
-RUN apk add tcpdump
+RUN apk add tcpdump gcc libc-dev linux-headers uwsgi-python3 apache2-dev
 
 ADD requirements.txt .
 
-RUN apk add gcc
-RUN apk add libc-dev
-RUN apk add linux-headers
-
 RUN pip install -r /requirements.txt
-
-RUN pip install uwsgi==2.0.14
-RUN apk add uwsgi-python3
 
 WORKDIR /var/www
 ADD app.py .
@@ -22,7 +15,6 @@ ADD sniff.py .
 ADD victim.wsgi .
 ADD victim.com.conf /etc/apache2/sites-available/
 
-RUN apk update && apk add apache2-dev
 RUN pip install mod_wsgi
 RUN a2enmod wsgi
 
