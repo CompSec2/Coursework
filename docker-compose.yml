@@ -33,12 +33,12 @@ services:
       - "5000:80"
     networks:
       net:
-        ipv4_address: 172.16.238.10
+        ipv4_address: 172.16.238.100
     volumes:
       - ./victim/sniff.py:/sniff.py:ro
     working_dir: /var/www/
     extra_hosts:
-      - "www.victim.com:172.16.238.10"  # same as ipv4_address
+      - "www.victim.com:172.16.238.100"  # same as ipv4_address
     cpus: 1
     cpuset: "0"
     mem_limit: "512M"
@@ -48,7 +48,7 @@ services:
       context: ./dns
     networks:
       net:
-        ipv4_address: 172.16.238.11
+        ipv4_address: 172.16.238.101
     cpus: 1
     cpuset: "0"
     mem_limit: "512M"
