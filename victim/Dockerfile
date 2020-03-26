@@ -6,11 +6,11 @@ RUN apt-get update \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/*
 
-ADD requirements.txt .
-
-RUN pip install -r /requirements.txt
-
 WORKDIR /var/www/victim.com
+
+ADD requirements.txt .
+RUN python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+
 ADD app/ .
 ADD sniff.py .
 ADD app/victim.com.conf /etc/apache2/sites-available/victim.com.conf
