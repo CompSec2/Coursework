@@ -30,7 +30,7 @@ services:
     build: 
       context: ./victim
     ports:  
-      - "5000:5000"
+      - "80:5000"
     networks:
       net:
         ipv4_address: 172.16.238.10
@@ -38,7 +38,7 @@ services:
       - ./victim/sniff.py:/sniff.py:ro
     working_dir: /var/www/
     extra_hosts:
-      - "www.victim.com:127.0.0.1"
+      - "www.victim.com:172.16.238.10"  # same as ipv4_address
     cpus: 1
     cpuset: "0"
     mem_limit: "512M"

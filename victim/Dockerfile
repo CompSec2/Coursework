@@ -1,25 +1,24 @@
-FROM python:3.8.1-alpine3.11
+FROM python:3.8.2-buster
 
-RUN apk update
-RUN apk add tcpdump gcc libc-dev linux-headers uwsgi-python3 apache2-dev
+RUN apt-get update \
+ && apt-get install -y tcpdump libapache2-mod-wsgi-py3 apache2 apache2-dev \
+ && apt-get clean \
+ && apt-get autoremove \
+ && rm -rf /var/lib/apt/lists/*
 
 ADD requirements.txt .
 
 RUN pip install -r /requirements.txt
 
-WORKDIR /var/www
-ADD app.py .
-ADD templates templates
-ADD static static
+WORKDIR /var/www/victim.com
+ADD app/ .
 ADD sniff.py .
-ADD victim.wsgi .
-ADD victim.com.conf /etc/apache2/sites-available/
+ADD app/victim.com.conf /etc/apache2/sites-available/victim.com.conf
 
-RUN pip install mod_wsgi
-RUN a2enmod wsgi && a2ensite /etc/apache2/sites-available/victim.com.conf
+RUN mkdir -p /var/www/victim.com/logs && chown -R 771 /var/www/victim.com
 
-RUN mkdir -p /var/www/victim.com/logs && chown -R 771 /var/www/victim.com && /etc/init.d/apache2 reload
+RUN a2dissite 000-default.conf && a2enmod wsgi && a2ensite victim.com
 
-EXPOSE 5000
+EXPOSE 80
 
-CMD ["/usr/local/bin/python", "app.py"]
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
