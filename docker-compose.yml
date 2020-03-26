@@ -30,7 +30,7 @@ services:
     build: 
       context: ./victim
     ports:  
-      - "80:5000"
+      - "5000:80"
     networks:
       net:
         ipv4_address: 172.16.238.10
