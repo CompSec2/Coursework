@@ -28,16 +28,16 @@ docker exec -ti coursework_attacker sh -c "python attack.py"
 
 To run multiple attackers potentially using multiple DNS servers:
 ```bash
-./attacker/multiple_attacks.sh <number_processes_per_attacker> <last byte of ip address of DNS for first attacker > <last byte of ip address of DNS for second attacker>...
+./attacker/multiple_attacks.sh <dns or web> <number_processes_per_attacker> <last byte of ip address of DNS for first attacker > <last byte of ip address of DNS for second attacker>...
 ```
-For example, to run an attack with 4 attackers, each with 2 processes against DNSes running on 172.16.238.8 and 172.16.238.9, each being hit by two attackers: 
+For example, to run an attack against the web victim with 4 attackers, each with 2 processes against DNSes running on 172.16.238.8 and 172.16.238.9, each being hit by two attackers: 
 ```bash
-./attacker/multiple_attacks.sh 2 8 8 9 9
+./attacker/multiple_attacks.sh web 2 8 8 9 9
 ```
 
 To sniff DNS packets incoming to the victim:
 ```bash 
-docker exec -it coursework_victim python sniff.py
+docker exec -it coursework_victim_web python sniff.py
 ```
 
 To see Flask app: navigate to http://localhost:5000
