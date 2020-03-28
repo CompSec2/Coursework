@@ -18,7 +18,7 @@ handler() {
             container=$(( $container + 1 ))
             echo
             echo "stopping attack script inside container"
-            docker exec -t coursework_attacker_${container} sh -c "ps | grep python | head -n 1| tr -s ' '|cut -d' ' -f2| xargs kill -s SIGINT"
+            docker exec -t coursework_attacker_${container} bash -c "ps -a| grep python | head -n 1| tr -s ' '|cut -d' ' -f2| xargs kill -s 2"
         done;
     exit 1
 }
