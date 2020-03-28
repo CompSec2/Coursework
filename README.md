@@ -37,7 +37,7 @@ For example, to run an attack against the web victim with 4 attackers, each with
 
 To sniff DNS packets incoming to the victim:
 ```bash 
-docker exec -it coursework_victim_web python sniff.py
+docker exec -it coursework_victim_web .venv/bin/python sniff.py
 ```
 
 To see Flask app: navigate to http://localhost
