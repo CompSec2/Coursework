@@ -1,11 +1,11 @@
 version: '2.2'
 
 services:
-  # tcpdump:
-  #  image: kaazing/tcpdump
-  #  network_mode: "host"
-  #  volumes:
-  #    - ./tcpdump:/tcpdump
+  tcpdump:
+    image: kaazing/tcpdump
+    network_mode: "host"
+    volumes:
+      - ./tcpdump:/tcpdump
   bind:
     restart: always
     build: ./dns
@@ -40,7 +40,7 @@ services:
     working_dir: /var/www/victim.com
     extra_hosts:
       - "www.victim.com:172.16.238.100"  # same as ipv4_address
-    # cpus: 0.1
+    cpus: 0.1
     cpuset: "0"
     mem_limit: "512M"
   victim_dns:
@@ -50,7 +50,7 @@ services:
     networks:
       net:
         ipv4_address: 172.16.238.101
-    # cpus: 0.01
+    cpus: 0.01
     cpuset: "0"
     mem_limit: "512M"
     environment:
