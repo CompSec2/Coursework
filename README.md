@@ -40,7 +40,7 @@ To sniff DNS packets incoming to the victim:
 docker exec -it coursework_victim_web python sniff.py
 ```
 
-To see Flask app: navigate to http://localhost:5000
+To see Flask app: navigate to http://localhost
 
 To see DNS admin panel: navigate to https://localhost:10000/ and log in with `root`/`highentropy`
 ## Wireshark
