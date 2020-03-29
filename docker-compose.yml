@@ -25,24 +25,36 @@ services:
       - net
     volumes:
       - ./attacker/attack.py:/attack.py:ro
-  victim:
-    container_name: coursework_victim
+    cpuset: "1,2,3"
+  victim_web:
+    container_name: coursework_victim_web
     build: 
       context: ./victim
     ports:  
-      - "5000:80"
+      - "80:80"
     networks:
       net:
-        ipv4_address: 172.16.238.10
+        ipv4_address: 172.16.238.100
     volumes:
       - ./victim/sniff.py:/sniff.py:ro
-    working_dir: /var/www/
+    working_dir: /var/www/victim.com
     extra_hosts:
-      - "www.victim.com:172.16.238.10"  # same as ipv4_address
+      - "www.victim.com:172.16.238.100"  # same as ipv4_address
     cpus: 1
     cpuset: "0"
     mem_limit: "512M"
-
+  victim_dns:
+    container_name: coursework_victim_dns
+    build:
+      context: ./dns
+    networks:
+      net:
+        ipv4_address: 172.16.238.101
+    cpus: 0.03
+    cpuset: "0"
+    mem_limit: "512M"
+    environment:
+      - WEBMIN_ENABLED=false
 
 networks:
   net:

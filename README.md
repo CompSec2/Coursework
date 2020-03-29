@@ -28,19 +28,19 @@ docker exec -ti coursework_attacker sh -c "python attack.py"
 
 To run multiple attackers potentially using multiple DNS servers:
 ```bash
-./attacker/multiple_attacks.sh <number_processes_per_attacker> <last byte of ip address of DNS for first attacker > <last byte of ip address of DNS for second attacker>...
+./attacker/multiple_attacks.sh <dns or web> <number_processes_per_attacker> <last byte of ip address of DNS for first attacker > <last byte of ip address of DNS for second attacker>...
 ```
-For example, to run an attack with 4 attackers, each with 2 processes against DNSes running on 172.16.238.8 and 172.16.238.9, each being hit by two attackers: 
+For example, to run an attack against the web victim with 4 attackers, each with 2 processes against DNSes running on 172.16.238.8 and 172.16.238.9, each being hit by two attackers: 
 ```bash
-./attacker/multiple_attacks.sh 2 8 8 9 9
+./attacker/multiple_attacks.sh web 2 8 8 9 9
 ```
 
 To sniff DNS packets incoming to the victim:
 ```bash 
-docker exec -it coursework_victim python sniff.py
+docker exec -it coursework_victim_web .venv/bin/python sniff.py
 ```
 
-To see Flask app: navigate to http://localhost:5000
+To see Flask app: navigate to http://localhost
 
 To see DNS admin panel: navigate to https://localhost:10000/ and log in with `root`/`highentropy`
 ## Wireshark
@@ -52,7 +52,7 @@ To access Wireshark, cd to where the tcpdump folder is and run:
 ```bash
 tail -c +1 -f tcpdump/tcpdump.pcap | wireshark -k -i -
 ```
-To see the dns packets for our network, in the filter, type ip.addr == 172.16.238.10
+To see the dns packets for our network, in the filter, type ip.addr == 172.16.238.100
 
 If you get access denied:
 ```bash

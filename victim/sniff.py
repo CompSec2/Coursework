@@ -8,4 +8,4 @@ def handler(packet):
     print("destination:", packet[IP].dst)
 
 
-sniff(filter="dst host 172.16.238.10 and src host 172.16.238.8 and udp ", prn=handler)
+sniff(filter="dst host 172.16.238.100 and src host 172.16.238.8 and udp ", prn=handler)

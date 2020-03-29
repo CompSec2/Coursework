@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
-#docker-compose up --scale attacker=5; # argument
-#
-#for each attacker give a dns ip
-# docker exec -ti coursework_attacker sh -c "python attack.py 4 8"
 
 argv="$@"
-ips=${argv:2}
+ips=${argv:6}
 
 processes=()
 attack() {
-    docker exec -t coursework_attacker_${1} sh -c "python attack.py ${2} ${3}"
+    docker exec -t coursework_attacker_${1} sh -c "python attack.py ${2} ${3} ${4}"
 }
 
-attackers=$((${#} - 1))
+attackers=$((${#} - 2))
 docker-compose up -d --scale attacker=${attackers};
 
 handler() {
@@ -22,19 +18,21 @@ handler() {
             container=$(( $container + 1 ))
             echo
             echo "stopping attack script inside container"
-            docker exec -t coursework_attacker_${container} sh -c "ps | grep python | head -n 1| tr -s ' '|cut -d' ' -f2| xargs kill -s SIGINT"
+            docker exec -t coursework_attacker_${container} bash -c "ps -a| grep python | head -n 1| tr -s ' '|cut -d' ' -f2| xargs kill -s 2"
         done;
     exit 1
 }
 
 trap handler SIGINT;
 
+echo "starting attack against coursework_victim_${1}"
+
 container=0
 for i in ${ips}
 do
     container=$(( $container + 1 ))
-    echo "starting attack on coursework_attacker_${container}"
-    attack ${container} ${1} ${i} &
+    echo "starting attack from coursework_attacker_${container}"
+    attack ${container} ${1} ${2} ${i} &
     processes+=("${!}")
 done;
 
