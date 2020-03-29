@@ -50,7 +50,7 @@ services:
     networks:
       net:
         ipv4_address: 172.16.238.101
-    cpus: 0.01
+    cpus: 0.03
     cpuset: "0"
     mem_limit: "512M"
     environment:
