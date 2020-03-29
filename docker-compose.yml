@@ -40,7 +40,7 @@ services:
     working_dir: /var/www/victim.com
     extra_hosts:
       - "www.victim.com:172.16.238.100"  # same as ipv4_address
-    cpus: 0.1
+    cpus: 1
     cpuset: "0"
     mem_limit: "512M"
   victim_dns:
